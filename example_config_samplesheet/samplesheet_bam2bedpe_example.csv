@@ -1,0 +1,3 @@
+SAMPLE_NAME,BAM_PATH
+sample001,/absolute/path/to/data_bam/sample001_ABC_L001.bam
+sample002,/absolute/path/to/data_bam/sample002_ABC_L001.bam

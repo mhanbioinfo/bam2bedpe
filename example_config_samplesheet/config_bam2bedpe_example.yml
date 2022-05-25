@@ -1,0 +1,22 @@
+## configuration for running bam2bedpe
+
+# common parameters
+OUT_DIR: "/full/path/to/output_dir"
+SAMPLESHEET_PATH: "/full/path/to/samplesheet.csv"
+SRC_DIR: "/full/path/to/directory/with/bam2bedpe_v?.py"
+CONDA_ACTIVATE: "/full/path/to/miniconda3/bin/activate"
+CONDA_ENV: "bam2bedpe_env"
+
+# tool parameters
+SLURMLOCAL: "local"
+KEEP_TMP: "false"
+NUM_OF_CHUNKS: 5
+
+# tool versions
+samtools: v1.10
+python: v3.7.12
+pysam: v0.16.0.1
+picard: v2.27.1
+
+
+## EOF
