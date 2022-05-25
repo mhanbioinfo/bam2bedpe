@@ -1,3 +1,5 @@
-**/example_config_samplesheet/test*
+._*
 .DS_Store
 ._.DS_Store
+**/example_config_samplesheet/test*
+**/example_config_samplesheet/._*
