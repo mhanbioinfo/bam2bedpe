@@ -9,7 +9,7 @@
 
 ## Workflow overview
 
-
+![bam2bedpe](https://user-images.githubusercontent.com/98410560/170511327-ca6435bf-9d32-4676-890e-caf9f067f1ad.png)
 
 Please see wiki for tutorial on settings up and running pipeline.
 
