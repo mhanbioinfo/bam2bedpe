@@ -3,12 +3,12 @@
 # common parameters
 OUT_DIR: "/full/path/to/output_dir"
 SAMPLESHEET_PATH: "/full/path/to/samplesheet.csv"
-SRC_DIR: "/full/path/to/directory/with/bam2bedpe_v?.py"
 CONDA_ACTIVATE: "/full/path/to/miniconda3/bin/activate"
 CONDA_ENV: "bam2bedpe_env"
 
 # tool parameters
 SLURMLOCAL: "local"
+#SLURMLOCAL: "slurm"
 KEEP_TMP: "false"
 NUM_OF_CHUNKS: 5
 

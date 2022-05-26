@@ -2,6 +2,7 @@
 
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=ming.han@uhn.ca
+#SBATCH -D ./logs_slurm/
 #SBATCH -t 1-00:00:00
 #SBATCH --mem=16G
 #SBATCH -J bam2bedpe
@@ -55,13 +56,15 @@ done
 
 ## Main program ####################################################
 
-# SRC_DIR="$(pwd)/src"
+source ${CONDA_ACTIVATE} ${CONDA_ENV}
 
 echo "Processing bam2bedpe..."
 echo "output path:      $OUT_DIR"
 echo "number of chunks: $NUM_OF_CHUNKS"
 echo "processing on:    $SLURMLOCAL"
 echo ""
+
+SRC_DIR="$(pwd)"
 
 OLDIFS=$IFS
 IFS=','
@@ -79,7 +82,7 @@ while read -r SAMPLE_NAME INPUT_BAM_PATH; do
     time1=$(date +%s)
     
     PY_SCRIPT_DIR=${SRC_DIR}
-    PY_SCRIPT_PATH="${PY_SCRIPT_DIR}/bam2bedpe_pysam_v5_wCIGAR.py"
+    PY_SCRIPT_PATH="${PY_SCRIPT_DIR}/bam2bedpe_pysam.py"
     INPUT_DIR="${INPUT_BAM_PATH%/*}"
     INPUT_BAM="${INPUT_BAM_PATH##*/}"
     
@@ -146,19 +149,18 @@ while read -r SAMPLE_NAME INPUT_BAM_PATH; do
 	#SBATCH -e ./%j-%x.err
 	
 	source ${CONDA_ACTIVATE} ${CONDA_ENV}
-	PICARD_DIR=${PICARD_DIR}
 	
 	echo "Job started at "\$(date) 
 	time1=\$(date +%s)
 	
-        picard FilterSamReads \
-	    I=${INPUT_DIR}/${INPUT_BAM} \
-	    O=${TMP_DIR}/"${INPUT_BAM%.*}_${CHUNK##*.}.bam" \
-	    READ_LIST_FILE=${CHUNK} \
-	    FILTER=includeReadList \
-	    WRITE_READS_FILES=false \
-	    USE_JDK_DEFLATER=true \
-	    USE_JDK_INFLATER=true \
+	picard FilterSamReads \
+	    -I ${INPUT_DIR}/${INPUT_BAM} \
+	    -O ${TMP_DIR}/"${INPUT_BAM%.*}_${CHUNK##*.}.bam" \
+	    -READ_LIST_FILE ${CHUNK} \
+	    -FILTER includeReadList \
+	    -WRITE_READS_FILES false \
+	    -USE_JDK_DEFLATER true \
+	    -USE_JDK_INFLATER true \
 	
 	python ${PY_SCRIPT_PATH} \
 	    --sort_bam_by_qname \
@@ -191,6 +193,8 @@ while read -r SAMPLE_NAME INPUT_BAM_PATH; do
         then
             echo "All bedpe chunks have been written to, merging bedpe chunks..."
             find ${TMP_DIR} -maxdepth 1 -mmin +3 -type f -regex ".*_CHUNK[1-9][0-9]*\.bedpe" -exec cat {} + \
+                | sort -k1,1V -k2,2n -k3,3n -k5,5n -k6,6n \
+                | gzip -c \
                 > ${OUT_DIR}/${OUT_MERGED_SORTD_BEDPE}.gz
             break 1
         else

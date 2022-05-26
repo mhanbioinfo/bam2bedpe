@@ -1,5 +1,6 @@
 ._*
 .DS_Store
 ._.DS_Store
+**/logs_slurm/*
 **/example_config_samplesheet/test*
 **/example_config_samplesheet/._*
