@@ -14,7 +14,7 @@
 ## Notes on BEDPE file
 - follows 0-based coordinate system as with all BED formats
 - first read in pair is always READ1, i.e. column order is READ1 READ2 (as oppose to coordinate order)
-- TLEN is identical to ones found in BAM (calculated to include on M CIGAR)
+- TLEN is identical to ones found in BAM (calculated where length only include M CIGAR)
 
 Please see [wiki](https://github.com/mhanbioinfo/bam2bedpe/wiki) for tutorial on settings up and running module.
 
