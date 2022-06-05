@@ -23,15 +23,15 @@
 
 | Col  | BED Field        | Type   | Regex or range           | Brief Description                | BAM Equivalent            |
 | ---- | ---------------- | ------ | ------------------------ | -------------------------------- | ------------------------- |
-| 1    | read1_chrom      | String | `[[:alnum:]_]{1,255}^4`  | read1 chromosome name            | RNAME                     |
-| 2    | read1_chromStart | Int    | `.\|([0,264−1])`         | read1 start position             | POS                       |
-| 3    | read1_chromEnd   | Int    | `.\|([0,264−1])`         | read1 end position               | None, calculated by pysam |
+| 1    | read1_chrom      | String | `.\[[:alnum:]_]{1,255}^4`| read1 chromosome name            | RNAME                     |
+| 2    | read1_chromStart | Int    | `-1\|([0,2^64−1])`       | read1 start position             | POS                       |
+| 3    | read1_chromEnd   | Int    | `-1\|([0,2^64−1])`       | read1 end position               | None, calculated by pysam |
 | 4    | read2_chrom      | String | `[[:alnum:]_]{1,255}^4`  | read2 chromosome name            | RNAME                     |
-| 5    | read2_chromStart | Int    | `.\|([0,264−1])`         | read2 start position             | POS                       |
-| 6    | read2_chromEnd   | Int    | `.\|([0,264−1])`         | read2 end position               | None, calculated by pysam |
+| 5    | read2_chromStart | Int    | `-1\|([0,2^64−1])`       | read2 start position             | POS                       |
+| 6    | read2_chromEnd   | Int    | `-1\|([0,2^64−1])`       | read2 end position               | None, calculated by pysam |
 | 7    | fragment_id      | String | `[\x20-\x7e]{1,255}`     | fragment id                      | QNAME                     |
-| 8    | read1_MAPQ       | Int    | `[0, 2^31 - 1]`          | read1 mapping quality            | MAPQ                      |
-| 9    | read2_MAPQ       | Int    | `[0, 2^31 - 1]`          | read2 mapping quality            | MAPQ                      |
+| 8    | read1_MAPQ       | Int    | `[0, 2^8-1]`             | read1 mapping quality            | MAPQ                      |
+| 9    | read2_MAPQ       | Int    | `[0, 2^8-1]`             | read2 mapping quality            | MAPQ                      |
 | 10   | read1_STRAND     | String | `[-+.]`                  | read1 strand                     | None, calculated by pysam |
 | 11   | read2_STRAND     | String | `[-+.]`                  | read2 strand                     | None, calculated by pysam |
 | 12   | read1_CIGAR      | String | `*\|([0-9]+[MIDNSHPX=])+`| read1 CIGAR string               | CIGAR                     |
