@@ -1,0 +1,6 @@
+2022-06-06: bam2bedpe module (version 0.2.0)
+- working bedpe7+12 file validator, example valid/invalid bedpe.gz files
+
+2022-05-25: bam2bedpe module (version 0.1.0)
+- working bam2bedpe module, 
+- conda env installation instructions
