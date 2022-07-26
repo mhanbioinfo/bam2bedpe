@@ -58,7 +58,7 @@ def write_bedpe(frag_dict):
                     read_a.reference_name, "\t", read_a.reference_start, "\t", read_a.reference_start, "\t", \
                     read_a.reference_name, "\t", read_a.reference_start, "\t", read_a.reference_start, "\t", \
                     read_a.query_name, "\t", read_a.mapping_quality, "\t", read_a.mapping_quality, "\t", \
-                    ".", "\t", ".", read_a.cigarstring, "\t", read_a.cigarstring, "\t", \
+                    ".", "\t", ".", "\t", read_a.cigarstring, "\t", read_a.cigarstring, "\t", \
                     read_a.flag, "\t", read_a.flag, "\t", \
                     read_a.template_length, "\t", read_a.template_length, "\t",
                     "NA", "\t", "NA", "\n"]))

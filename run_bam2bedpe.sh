@@ -2,7 +2,7 @@
 
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=ming.han@uhn.ca
-#SBATCH -D ./logs_slurm/
+#SBATCH -D ./
 #SBATCH -t 1-00:00:00
 #SBATCH --mem=16G
 #SBATCH -J bam2bedpe
@@ -71,7 +71,6 @@ IFS=','
 [ ! -f $SAMPLESHEET_PATH ] && { echo "$SAMPLESHEET_PATH file not found"; exit 99; }
 sed 1d $SAMPLESHEET_PATH | \
 while read -r SAMPLE_NAME INPUT_BAM_PATH; do
-
 
     #SAMPLE_NAME="toy01"
     #INPUT_BAM_PATH="/cluster/home/t110409uhn/git/cfmedip_medremix_bedpe_git/toy_files/toy01.bam"
